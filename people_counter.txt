@@ -1,0 +1,44 @@
+int total = 0;
+int i=3;
+
+void setup() {
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(5,OUTPUT);
+  pinMode(6,OUTPUT);
+  pinMode(7,OUTPUT);
+  
+  pinMode(8,INPUT);
+  pinMode(9,INPUT);
+  Serial.begin(9600);
+}
+
+void show() {
+  Serial.print(total);
+    Serial.println(" people are in the room.");
+}
+void loop() 
+{
+  if (digitalRead(8) == LOW) {
+    while (digitalRead(9) == HIGH) 
+    {}
+    Serial.print("Person entered there are ");
+    total++;
+    show();
+    digitalWrite(i,HIGH);
+    i++;
+    delay(1000);
+   
+} 
+  else if (digitalRead(9) == LOW)
+  {
+    while (digitalRead(8) == HIGH) 
+    {}
+    Serial.print("Person exited there are ");
+    total--;
+    i--;
+    digitalWrite(i,LOW);
+    show();
+    delay(1000);
+  }
+}
